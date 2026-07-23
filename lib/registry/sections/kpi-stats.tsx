@@ -52,7 +52,7 @@ const STATS: Stat[] = [
 function Sparkline({ values, trend }: { values: number[]; trend: 'up' | 'down' }) {
   const max = Math.max(...values)
   return (
-    <div className="flex h-6 items-end gap-0.5">
+    <div className="flex h-6 shrink-0 items-end gap-0.5">
       {values.map((v, i) => (
         <span
           key={i}
@@ -77,13 +77,13 @@ function KpiStatsPreview() {
       {STATS.map((stat) => (
         <Card key={stat.label}>
           <CardContent className="p-4">
-            <div className="mb-3 flex items-center justify-between">
-              <span className="flex h-9 w-9 items-center justify-center rounded-md bg-accent text-accent-foreground">
+            <div className="mb-3 flex items-center justify-between gap-2">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent text-accent-foreground">
                 <stat.icon className="h-4 w-4" />
               </span>
               <span
                 className={cn(
-                  'flex items-center gap-0.5 text-xs font-medium',
+                  'flex shrink-0 items-center gap-0.5 text-xs font-medium',
                   stat.trend === 'up' ? 'text-emerald-600 dark:text-emerald-400' : 'text-destructive'
                 )}
               >
@@ -95,9 +95,9 @@ function KpiStatsPreview() {
                 {stat.delta}
               </span>
             </div>
-            <p className="text-xs text-muted-foreground">{stat.label}</p>
-            <div className="mt-1 flex items-end justify-between gap-2">
-              <p className="text-xl font-semibold text-foreground">{stat.value}</p>
+            <p className="truncate text-xs text-muted-foreground">{stat.label}</p>
+            <div className="mt-1 flex min-w-0 items-end justify-between gap-2">
+              <p className="min-w-0 truncate text-xl font-semibold text-foreground">{stat.value}</p>
               <Sparkline values={stat.sparkline} trend={stat.trend} />
             </div>
           </CardContent>

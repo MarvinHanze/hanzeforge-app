@@ -34,10 +34,10 @@ function FixedSidebarPreview({ children, searchBarSlot }: ConfiguratorPreviewPro
         </div>
       </aside>
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex shrink-0 items-center justify-end border-b border-border bg-card px-4 py-2.5 sm:px-6">
+        <header className="flex shrink-0 items-center justify-end border-b border-border bg-card px-4 py-2.5 @sm:px-6">
           {searchBarSlot}
         </header>
-        <div className="preview-scroll flex-1 overflow-y-auto bg-background p-4 sm:p-6">
+        <div className="preview-scroll flex-1 overflow-y-auto bg-background p-4 @sm:p-6">
           <div className="flex flex-col gap-6">{children}</div>
         </div>
       </div>

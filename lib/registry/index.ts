@@ -43,6 +43,18 @@ import { activityFeedOption } from './sections/activity-feed'
  * That's it — no other file in the codebase needs to change. Wizard steps,
  * option cards, thumbnails, the live preview compositor, and the summary
  * panel all just render whatever is in these arrays.
+ *
+ * RESPONSIVE CLASSES INSIDE PREVIEW COMPONENTS — use @sm:/@md:/@lg:/@xl:,
+ * NEVER sm:/md:/lg:/xl:. Every option's PreviewComponent renders inside
+ * PreviewFrame's `@container` wrapper (components/preview/PreviewFrame.tsx),
+ * which is only ~50% of the actual browser viewport width on desktop (the
+ * wizard + preview sit side-by-side). Plain Tailwind breakpoints respond to
+ * the VIEWPORT, not this panel, so e.g. `lg:grid-cols-4` would trigger at
+ * viewport ≥1024px even though the panel itself is only ~500px wide there —
+ * content gets squeezed and can overflow the card. The `@tailwindcss/
+ * container-queries` plugin's `@sm:`/`@md:`/`@lg:`/`@xl:` variants respond to
+ * the container's own width instead, which is what every file in
+ * lib/registry/ already uses — keep following that pattern for new options.
  */
 
 export const navigationOptions: ConfiguratorOption[] = [

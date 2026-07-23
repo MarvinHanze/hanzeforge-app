@@ -58,8 +58,14 @@ export function PreviewFrame({
         </div>
       </div>
 
-      {/* Composed mini web-app */}
-      <div data-preview-theme={themeOption.id} className="h-[560px] bg-background sm:h-[620px]">
+      {/* Composed mini web-app — @container so registry components can respond to the ACTUAL
+          preview-panel width via @sm/@md/@lg variants, instead of the browser viewport width
+          (this panel is only ~50% of the viewport on desktop, so viewport-based sm:/md:/lg:
+          classes here would size things for the wrong container and overflow). */}
+      <div
+        data-preview-theme={themeOption.id}
+        className="@container h-[560px] bg-background sm:h-[620px]"
+      >
         <AnimatePresence mode="wait">
           <motion.div
             key={`${navigationId}-${themeId}-${searchBarId}`}

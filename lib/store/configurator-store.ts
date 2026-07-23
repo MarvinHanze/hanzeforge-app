@@ -25,6 +25,7 @@ interface ConfiguratorState {
   setTheme: (id: string) => void
   setSearchBar: (id: string) => void
   toggleSection: (id: string) => void
+  moveSection: (id: string, direction: 'up' | 'down') => void
   submitRequest: () => void
   resetSubmit: () => void
 }
@@ -58,6 +59,17 @@ export const useConfiguratorStore = create<ConfiguratorState>((set, get) => ({
           ? state.sectionIds.filter((s) => s !== id)
           : [...state.sectionIds, id],
       }
+    }),
+
+  moveSection: (id, direction) =>
+    set((state) => {
+      const index = state.sectionIds.indexOf(id)
+      if (index === -1) return state
+      const targetIndex = direction === 'up' ? index - 1 : index + 1
+      if (targetIndex < 0 || targetIndex >= state.sectionIds.length) return state
+      const next = [...state.sectionIds]
+      ;[next[index], next[targetIndex]] = [next[targetIndex], next[index]]
+      return { sectionIds: next }
     }),
 
   submitRequest: () => set({ requestSubmitted: true }),

@@ -9,14 +9,14 @@ import { cn } from '@/lib/utils'
 function TopNavbarPreview({ children, searchBarSlot }: ConfiguratorPreviewProps) {
   return (
     <div className="flex h-full w-full flex-col bg-background">
-      <header className="flex shrink-0 items-center gap-4 border-b border-border bg-card px-4 py-2.5 sm:px-6">
+      <header className="flex min-w-0 shrink-0 items-center gap-4 border-b border-border bg-card px-4 py-2.5 @sm:px-6">
         <NavLogo />
-        <nav className="hidden flex-1 items-center gap-1 md:flex">
+        <nav className="hidden min-w-0 flex-1 items-center gap-1 overflow-x-auto @md:flex">
           {NAV_ITEMS.slice(0, 5).map((item) => (
             <span
               key={item.label}
               className={cn(
-                'flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors',
+                'flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-colors',
                 item.active
                   ? 'bg-accent text-accent-foreground'
                   : 'text-muted-foreground hover:bg-muted hover:text-foreground'
@@ -27,12 +27,12 @@ function TopNavbarPreview({ children, searchBarSlot }: ConfiguratorPreviewProps)
             </span>
           ))}
         </nav>
-        <div className="ml-auto flex items-center gap-3">
+        <div className="ml-auto flex shrink-0 items-center gap-3">
           {searchBarSlot}
           <UserMenu compact />
         </div>
       </header>
-      <div className="preview-scroll flex-1 overflow-y-auto bg-background p-4 sm:p-6">
+      <div className="preview-scroll flex-1 overflow-y-auto bg-background p-4 @sm:p-6">
         <div className="mx-auto flex max-w-5xl flex-col gap-6">{children}</div>
       </div>
     </div>

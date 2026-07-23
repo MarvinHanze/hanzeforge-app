@@ -78,14 +78,14 @@ function CollapsibleSidebarPreview({ children, searchBarSlot }: ConfiguratorPrev
           </div>
         </aside>
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="flex shrink-0 items-center justify-between border-b border-border bg-card px-4 py-2.5 sm:px-6">
-            <span className="hidden items-center gap-1.5 text-xs text-muted-foreground sm:flex">
+          <header className="flex shrink-0 items-center justify-between border-b border-border bg-card px-4 py-2.5 @sm:px-6">
+            <span className="hidden items-center gap-1.5 text-xs text-muted-foreground @sm:flex">
               {collapsed ? <PanelLeftOpen className="h-3.5 w-3.5" /> : <PanelLeftClose className="h-3.5 w-3.5" />}
               Klik het pijltje onderaan de zijbalk om uit/in te klappen
             </span>
             {searchBarSlot}
           </header>
-          <div className="preview-scroll flex-1 overflow-y-auto bg-background p-4 sm:p-6">
+          <div className="preview-scroll flex-1 overflow-y-auto bg-background p-4 @sm:p-6">
             <div className="flex flex-col gap-6">{children}</div>
           </div>
         </div>

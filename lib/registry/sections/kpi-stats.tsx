@@ -73,7 +73,7 @@ function Sparkline({ values, trend }: { values: number[]; trend: 'up' | 'down' }
 
 function KpiStatsPreview() {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 @sm:gap-4 @lg:grid-cols-4">
       {STATS.map((stat) => (
         <Card key={stat.label}>
           <CardContent className="p-4">

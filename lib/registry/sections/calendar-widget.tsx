@@ -27,7 +27,7 @@ function CalendarWidgetPreview() {
         <CardTitle className="text-base">Agenda</CardTitle>
         <CardDescription>Juli 2026 — aankomende afspraken en deadlines</CardDescription>
       </CardHeader>
-      <CardContent className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <CardContent className="grid grid-cols-1 gap-6 @sm:grid-cols-2">
         <div>
           <div className="mb-2 grid grid-cols-7 gap-1 text-center text-[11px] font-medium text-muted-foreground">
             {WEEKDAYS.map((d) => (

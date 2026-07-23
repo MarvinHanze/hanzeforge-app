@@ -41,6 +41,7 @@ export default function Home() {
     setTheme,
     setSearchBar,
     toggleSection,
+    moveSection,
   } = useConfiguratorStore()
 
   const directionRef = useRef(1)
@@ -135,7 +136,7 @@ export default function Home() {
                 )}
 
                 {currentStep === 3 && (
-                  <SectionPicker sectionIds={sectionIds} onToggle={toggleSection} />
+                  <SectionPicker sectionIds={sectionIds} onToggle={toggleSection} onMove={moveSection} />
                 )}
 
                 {currentStep === 4 && (

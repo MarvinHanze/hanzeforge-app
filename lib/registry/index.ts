@@ -45,16 +45,26 @@ import { activityFeedOption } from './sections/activity-feed'
  * panel all just render whatever is in these arrays.
  *
  * RESPONSIVE CLASSES INSIDE PREVIEW COMPONENTS — use @sm:/@md:/@lg:/@xl:,
- * NEVER sm:/md:/lg:/xl:. Every option's PreviewComponent renders inside
- * PreviewFrame's `@container` wrapper (components/preview/PreviewFrame.tsx),
- * which is only ~50% of the actual browser viewport width on desktop (the
- * wizard + preview sit side-by-side). Plain Tailwind breakpoints respond to
- * the VIEWPORT, not this panel, so e.g. `lg:grid-cols-4` would trigger at
- * viewport ≥1024px even though the panel itself is only ~500px wide there —
- * content gets squeezed and can overflow the card. The `@tailwindcss/
- * container-queries` plugin's `@sm:`/`@md:`/`@lg:`/`@xl:` variants respond to
- * the container's own width instead, which is what every file in
- * lib/registry/ already uses — keep following that pattern for new options.
+ * NEVER sm:/md:/lg:/xl:. Section components render inside a navigation
+ * option's own content wrapper, which is only ~50% of the actual browser
+ * viewport width on desktop (the wizard + preview sit side-by-side) — plain
+ * Tailwind breakpoints respond to the VIEWPORT, not this panel, so e.g.
+ * `lg:grid-cols-4` would trigger at viewport ≥1024px even though the panel
+ * itself is only ~500px wide there, squeezing/overflowing content.
+ *
+ * IMPORTANT — where the `@container` boundary lives: it is NOT on
+ * PreviewFrame's outermost wrapper. Every NAVIGATION option's own file
+ * (lib/registry/navigation/*.tsx) puts `@container` on the div that renders
+ * `{children}` — i.e. the actual content area, AFTER subtracting whatever
+ * width that layout's own sidebar/chrome permanently consumes. A layout
+ * like fixed-sidebar reserves 224px for its <aside>; querying against the
+ * full panel width (as the outer wrapper would report) makes breakpoints
+ * fire as if that 224px were still available for content, causing overflow
+ * specifically in wide-sidebar layouts. If you add a new NAVIGATION option,
+ * copy this same pattern (`@container` on the `{children}` wrapper, inside
+ * the flex/scroll area that comes AFTER the sidebar/header chrome). SECTION
+ * options never need their own `@container` — they just use `@sm:`/`@md:`/
+ * `@lg:` and inherit whichever navigation option's container is nearest.
  */
 
 export const navigationOptions: ConfiguratorOption[] = [

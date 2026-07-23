@@ -33,7 +33,7 @@ function TopNavbarPreview({ children, searchBarSlot }: ConfiguratorPreviewProps)
         </div>
       </header>
       <div className="preview-scroll flex-1 overflow-y-auto bg-background p-4 @sm:p-6">
-        <div className="mx-auto flex max-w-5xl flex-col gap-6">{children}</div>
+        <div className="@container mx-auto flex max-w-5xl flex-col gap-6">{children}</div>
       </div>
     </div>
   )

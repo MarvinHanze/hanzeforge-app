@@ -38,7 +38,7 @@ function FixedSidebarPreview({ children, searchBarSlot }: ConfiguratorPreviewPro
           {searchBarSlot}
         </header>
         <div className="preview-scroll flex-1 overflow-y-auto bg-background p-4 @sm:p-6">
-          <div className="flex flex-col gap-6">{children}</div>
+          <div className="@container flex flex-col gap-6">{children}</div>
         </div>
       </div>
     </div>

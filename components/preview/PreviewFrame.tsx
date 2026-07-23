@@ -58,10 +58,14 @@ export function PreviewFrame({
         </div>
       </div>
 
-      {/* Composed mini web-app — @container so registry components can respond to the ACTUAL
-          preview-panel width via @sm/@md/@lg variants, instead of the browser viewport width
-          (this panel is only ~50% of the viewport on desktop, so viewport-based sm:/md:/lg:
-          classes here would size things for the wrong container and overflow). */}
+      {/* Composed mini web-app. This wrapper is @container too (a harmless fallback), but the
+          container query that actually matters for section components lives INSIDE each
+          navigation option's own content wrapper (the div rendering {children}), not here —
+          because navigation layouts with a fixed sidebar (e.g. fixed-sidebar's 224px-wide
+          <aside>) permanently consume width that this outer div's measurement wouldn't account
+          for. Querying against THIS width would make a @lg: breakpoint fire even though the
+          actual content area is 224px narrower, causing overflow specifically in wide-sidebar
+          layouts. Always add @container to the content wrapper in NEW navigation options too. */}
       <div
         data-preview-theme={themeOption.id}
         className="@container h-[560px] bg-background sm:h-[620px]"

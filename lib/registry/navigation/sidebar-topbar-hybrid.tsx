@@ -3,7 +3,7 @@
 import { LayoutPanelLeft } from 'lucide-react'
 
 import type { ConfiguratorOption, ConfiguratorPreviewProps } from '@/lib/registry/types'
-import { NAV_ITEMS, NavLogo, UserMenu } from './_shared'
+import { NAV_ITEMS, UserMenu } from './_shared'
 import { cn } from '@/lib/utils'
 
 function HybridPreview({ children, searchBarSlot }: ConfiguratorPreviewProps) {

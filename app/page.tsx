@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Hammer } from 'lucide-react'
 
@@ -44,20 +44,22 @@ export default function Home() {
     moveSection,
   } = useConfiguratorStore()
 
-  const directionRef = useRef(1)
+  // Direction affects render output (which slide-in variant plays), so it belongs in state,
+  // not a ref — refs must never be read during render (react-hooks/refs).
+  const [direction, setDirection] = useState(1)
 
   function goToStep(target: number) {
-    directionRef.current = target > currentStep ? 1 : -1
+    setDirection(target > currentStep ? 1 : -1)
     setStep(target)
   }
 
   function handleNext() {
-    directionRef.current = 1
+    setDirection(1)
     nextStep()
   }
 
   function handlePrev() {
-    directionRef.current = -1
+    setDirection(-1)
     prevStep()
   }
 
@@ -81,10 +83,10 @@ export default function Home() {
           <StepNav steps={STEPS} currentStep={currentStep} onStepClick={goToStep} />
 
           <div className="relative min-h-[420px] overflow-hidden">
-            <AnimatePresence mode="wait" custom={directionRef.current} initial={false}>
+            <AnimatePresence mode="wait" custom={direction} initial={false}>
               <motion.div
                 key={currentStep}
-                custom={directionRef.current}
+                custom={direction}
                 variants={variants}
                 initial="enter"
                 animate="center"
@@ -171,16 +173,24 @@ export default function Home() {
         </section>
 
         {/* Live preview column */}
-        <section className="lg:sticky lg:top-8 lg:self-start">
+        <section className="min-w-0 lg:sticky lg:top-8 lg:self-start">
           <p className="mb-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
             Live preview
           </p>
-          <PreviewFrame
-            navigationId={navigationId}
-            themeId={themeId}
-            searchBarId={searchBarId}
-            sectionIds={sectionIds}
-          />
+          {/* The preview simulates a real desktop-style webapp (sidebars, topbars, KPI grids) —
+              on narrow phones that content shouldn't be crushed down to illegible widths, so it
+              gets a sensible floor width and scrolls horizontally instead, exactly like a
+              Storybook/Figma preview panel would. */}
+          <div className="-mx-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0 sm:pb-0">
+            <div className="min-w-[560px]">
+              <PreviewFrame
+                navigationId={navigationId}
+                themeId={themeId}
+                searchBarId={searchBarId}
+                sectionIds={sectionIds}
+              />
+            </div>
+          </div>
         </section>
       </div>
     </main>

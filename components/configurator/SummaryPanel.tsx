@@ -89,6 +89,9 @@ export function SummaryPanel({
               We nemen contact op met een vrijblijvend voorstel op basis van deze configuratie.
             </p>
           </div>
+          <span className="sr-only" aria-live="polite">
+            {submitted ? 'Aanvraag verstuurd.' : ''}
+          </span>
           <AnimatePresence mode="wait" initial={false}>
             {submitted ? (
               <motion.div

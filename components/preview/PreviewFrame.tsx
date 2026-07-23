@@ -45,8 +45,8 @@ export function PreviewFrame({
 
   return (
     <div className="w-full overflow-hidden rounded-xl border border-black/10 bg-white shadow-2xl ring-1 ring-black/5">
-      {/* Fake browser chrome */}
-      <div className="flex items-center gap-3 border-b border-slate-200 bg-slate-100 px-4 py-2.5">
+      {/* Fake browser chrome (purely decorative) */}
+      <div className="flex items-center gap-3 border-b border-slate-200 bg-slate-100 px-4 py-2.5" aria-hidden="true">
         <div className="flex shrink-0 gap-1.5">
           <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
           <span className="h-3 w-3 rounded-full bg-[#febc2e]" />

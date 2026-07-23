@@ -28,6 +28,8 @@ export function StepNav({ steps, currentStep, onStepClick }: StepNavProps) {
               <button
                 type="button"
                 onClick={() => onStepClick(index)}
+                aria-label={`Stap ${index + 1}: ${step.label}`}
+                aria-current={isActive ? 'step' : undefined}
                 className="group flex w-full flex-col items-start gap-2 pb-3 pt-1 text-left"
               >
                 <span

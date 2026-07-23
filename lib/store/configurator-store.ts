@@ -30,7 +30,7 @@ interface ConfiguratorState {
   resetSubmit: () => void
 }
 
-export const useConfiguratorStore = create<ConfiguratorState>((set, get) => ({
+export const useConfiguratorStore = create<ConfiguratorState>((set) => ({
   currentStep: 0,
   navigationId: navigationOptions[0].id,
   themeId: themeOptions[0].id,

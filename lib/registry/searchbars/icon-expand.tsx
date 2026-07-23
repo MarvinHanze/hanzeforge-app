@@ -45,6 +45,7 @@ function IconExpandSearchPreview() {
           expanded && 'bg-muted text-foreground'
         )}
         aria-label="Zoeken openen"
+        aria-expanded={expanded}
       >
         <Search className="h-4 w-4" />
       </button>

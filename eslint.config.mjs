@@ -1,0 +1,13 @@
+import nextConfig from 'eslint-config-next/core-web-vitals'
+import nextTypescriptConfig from 'eslint-config-next/typescript'
+
+/** @type {import('eslint').Linter.Config[]} */
+const config = [
+  ...nextConfig,
+  ...nextTypescriptConfig,
+  {
+    ignores: ['.next/**', 'node_modules/**'],
+  },
+]
+
+export default config

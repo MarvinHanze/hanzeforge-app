@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Wizard-chrome palette (the configurator UI itself, OUTSIDE the fake-browser
+ * live preview). Deliberately neutral so it never competes visually with the
+ * theme the visitor is currently previewing.
+ */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 243 75% 96%;
+    --accent-foreground: 243 75% 30%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 243 75% 59%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/*
+ * ---------------------------------------------------------------------------
+ * PREVIEW THEMES
+ * ---------------------------------------------------------------------------
+ * Each block below is scoped to `[data-preview-theme="<id>"]`, an attribute
+ * set on the wrapper element inside components/preview/PreviewFrame.tsx. CSS
+ * custom properties cascade to descendants, so every shadcn/Tailwind class
+ * used INSIDE the preview (bg-background, text-foreground, bg-primary, ...)
+ * automatically repaints for whichever theme is selected, with zero
+ * conditional rendering. The `--chart-*` tokens are consumed by the Recharts
+ * panel. Adding theme #6 later = one new block here + one new registry file,
+ * see lib/registry/themes for the option metadata.
+ */
+
+/* 1. Indigo / Violet — echoes HanzeVoice's color mood */
+[data-preview-theme='indigo-violet'] {
+  --background: 250 60% 99%;
+  --foreground: 250 40% 12%;
+  --card: 0 0% 100%;
+  --card-foreground: 250 40% 12%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 250 40% 12%;
+  --primary: 243 75% 59%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 262 83% 96%;
+  --secondary-foreground: 262 60% 30%;
+  --muted: 240 35% 96%;
+  --muted-foreground: 240 15% 45%;
+  --accent: 262 83% 92%;
+  --accent-foreground: 262 70% 32%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 25% 89%;
+  --input: 240 25% 89%;
+  --ring: 243 75% 59%;
+  --chart-1: 243 75% 59%;
+  --chart-2: 262 83% 66%;
+  --chart-3: 199 89% 60%;
+  --chart-4: 280 65% 70%;
+  --chart-5: 226 70% 55%;
+}
+
+/* 2. Emerald / Slate — echoes HanzeStatus's color mood */
+[data-preview-theme='emerald-slate'] {
+  --background: 210 20% 98%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 160 84% 34%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 25% 94%;
+  --secondary-foreground: 215 25% 27%;
+  --muted: 210 20% 95%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 160 60% 92%;
+  --accent-foreground: 160 84% 24%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 25% 89%;
+  --input: 214 25% 89%;
+  --ring: 160 84% 34%;
+  --chart-1: 160 84% 34%;
+  --chart-2: 199 89% 48%;
+  --chart-3: 215 25% 40%;
+  --chart-4: 172 66% 40%;
+  --chart-5: 40 80% 50%;
+}
+
+/* 3. Warm Terracotta — echoes BoekPro's color mood */
+[data-preview-theme='warm-terracotta'] {
+  --background: 33 45% 97%;
+  --foreground: 20 35% 16%;
+  --card: 30 50% 99%;
+  --card-foreground: 20 35% 16%;
+  --popover: 30 50% 99%;
+  --popover-foreground: 20 35% 16%;
+  --primary: 14 65% 51%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 140 18% 92%;
+  --secondary-foreground: 140 25% 24%;
+  --muted: 30 30% 93%;
+  --muted-foreground: 25 20% 40%;
+  --accent: 14 65% 93%;
+  --accent-foreground: 14 65% 32%;
+  --destructive: 4 70% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 30 25% 87%;
+  --input: 30 25% 87%;
+  --ring: 14 65% 51%;
+  --chart-1: 14 65% 51%;
+  --chart-2: 140 20% 45%;
+  --chart-3: 35 70% 55%;
+  --chart-4: 355 55% 55%;
+  --chart-5: 90 25% 45%;
+}
+
+/* 4. Dark / Amber — echoes MenuKaart's color mood */
+[data-preview-theme='dark-amber'] {
+  --background: 240 12% 9%;
+  --foreground: 40 30% 92%;
+  --card: 240 10% 13%;
+  --card-foreground: 40 30% 92%;
+  --popover: 240 10% 13%;
+  --popover-foreground: 40 30% 92%;
+  --primary: 43 74% 52%;
+  --primary-foreground: 30 30% 10%;
+  --secondary: 240 8% 18%;
+  --secondary-foreground: 40 30% 88%;
+  --muted: 240 8% 17%;
+  --muted-foreground: 40 12% 65%;
+  --accent: 43 60% 22%;
+  --accent-foreground: 43 80% 75%;
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 240 8% 22%;
+  --input: 240 8% 22%;
+  --ring: 43 74% 52%;
+  --chart-1: 43 74% 52%;
+  --chart-2: 350 60% 55%;
+  --chart-3: 40 30% 75%;
+  --chart-4: 200 60% 50%;
+  --chart-5: 260 50% 60%;
+}
+
+/* 5. Corporate Blue */
+[data-preview-theme='corporate-blue'] {
+  --background: 210 45% 98%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 217 91% 55%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 213 40% 94%;
+  --secondary-foreground: 217 60% 28%;
+  --muted: 213 35% 95%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 217 91% 93%;
+  --accent-foreground: 217 91% 32%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 32% 89%;
+  --input: 214 32% 89%;
+  --ring: 217 91% 55%;
+  --chart-1: 217 91% 55%;
+  --chart-2: 199 89% 48%;
+  --chart-3: 235 60% 60%;
+  --chart-4: 172 66% 40%;
+  --chart-5: 25 85% 55%;
+}
+
+/* Thin, unobtrusive scrollbars inside the preview frame */
+.preview-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.preview-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+}
